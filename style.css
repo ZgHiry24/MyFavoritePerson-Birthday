@@ -1,0 +1,713 @@
+
+/* =========================================
+   VANESSA BIRTHDAY WEBSITE
+   Theme: White & Blue Romance
+========================================= */
+
+/* GOOGLE FONT FALLBACK */
+:root {
+    --white: #ffffff;
+    --soft-white: #f8fbff;
+    --light-blue: #dceeff;
+    --sky-blue: #a9d3f5;
+    --blue: #609bd0;
+    --deep-blue: #315f89;
+    --navy: #203e5b;
+    --text: #38536d;
+    --shadow: 0 15px 45px rgba(49, 95, 137, 0.12);
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "DM Sans", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 20% 20%, #eaf5ff, transparent 35%),
+        radial-gradient(circle at 80% 80%, #dceeff, transparent 35%),
+        var(--white);
+    overflow-x: hidden;
+}
+
+/* BACKGROUND EFFECTS */
+.background-effects {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.floating-hearts,
+.sparkles {
+    position: absolute;
+    inset: 0;
+}
+
+/* MAIN APP */
+#birthday-app {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+}
+
+/* PAGE SYSTEM */
+.page {
+    position: absolute;
+    inset: 0;
+    min-height: 100vh;
+    width: 100%;
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(25px) scale(0.98);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        visibility 0.7s ease;
+}
+
+.page.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+/* TYPOGRAPHY */
+h1,
+h2 {
+    font-family: "Playfair Display", serif;
+    color: var(--deep-blue);
+}
+
+h1 {
+    font-size: clamp(2.3rem, 6vw, 4.5rem);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+p {
+    line-height: 1.8;
+}
+
+.subtitle {
+    display: block;
+    margin-bottom: 18px;
+    color: var(--blue);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* BUTTONS */
+.primary-btn {
+    border: none;
+    border-radius: 50px;
+    padding: 16px 34px;
+    background: linear-gradient(
+        135deg,
+        var(--blue),
+        var(--deep-blue)
+    );
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(49, 95, 137, 0.25);
+    transition: 0.3s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(49, 95, 137, 0.35);
+}
+
+.primary-btn:active {
+    transform: scale(0.96);
+}
+
+/* =========================================
+   PAGE 1 - SECRET ENTRANCE
+========================================= */
+
+.entrance-content {
+    text-align: center;
+    max-width: 650px;
+    animation: entrance 1s ease;
+}
+
+.pixel-heart {
+    font-size: clamp(7rem, 20vw, 12rem);
+    margin: 20px 0;
+    filter: drop-shadow(0 10px 20px #f5a9a9);
+    animation: heartbeat 1.8s infinite;
+}
+
+.entrance-content h1 {
+    margin-bottom: 15px;
+}
+
+.entrance-content p {
+    margin-bottom: 30px;
+    color: #71879d;
+}
+
+/* =========================================
+   PAGE 2 - BIRTHDAY GIFT
+========================================= */
+
+.birthday-content {
+    text-align: center;
+    max-width: 750px;
+}
+
+.birthday-content h1 {
+    margin-bottom: 10px;
+}
+
+.birthday-content h2 {
+    color: var(--blue);
+    margin-bottom: 12px;
+}
+
+.birthday-content > p {
+    margin-bottom: 25px;
+}
+
+.gift-container {
+    margin: 35px auto;
+    width: 180px;
+    height: 180px;
+    display: grid;
+    place-items: center;
+}
+
+.gift-box {
+    position: relative;
+    font-size: 7rem;
+    cursor: pointer;
+    animation: giftBounce 2s infinite;
+    filter: drop-shadow(0 12px 15px #a9d3f5);
+}
+
+.gift-body {
+    position: relative;
+    z-index: 2;
+}
+
+.gift-lid,
+.gift-ribbon {
+    display: none;
+}
+
+/* =========================================
+   PAGE 3 - BIRTHDAY LETTER
+========================================= */
+
+.letter-container {
+    width: min(100%, 760px);
+    text-align: center;
+}
+
+.letter-paper {
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e2effa;
+    border-radius: 22px;
+    padding: clamp(25px, 5vw, 55px);
+    margin: 25px 0;
+    box-shadow: var(--shadow);
+    text-align: left;
+}
+
+.letter-decoration {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 2rem;
+}
+
+.letter-paper h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.letter-greeting {
+    color: var(--deep-blue);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.letter-message p {
+    margin-bottom: 20px;
+    color: #536d86;
+}
+
+.letter-signature {
+    margin-top: 30px;
+    color: var(--deep-blue);
+    line-height: 1.8;
+    font-family: "Playfair Display", serif;
+}
+
+/* =========================================
+   PAGE 4 - OUR MEMORIES
+========================================= */
+
+.memories-content {
+    text-align: center;
+    width: min(100%, 950px);
+}
+
+.memories-content > p {
+    margin: 12px 0 35px;
+}
+
+.photo-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin: 30px 0;
+}
+
+.polaroid {
+    width: min(100%, 340px);
+    padding: 13px 13px 25px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 12px 35px rgba(32, 62, 91, 0.16);
+    transition: 0.4s ease;
+}
+
+.polaroid:nth-child(1) {
+    transform: rotate(-4deg);
+}
+
+.polaroid:nth-child(2) {
+    transform: rotate(4deg);
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) translateY(-12px) scale(1.04);
+}
+
+.polaroid img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+}
+
+.polaroid figcaption {
+    margin-top: 17px;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    color: var(--deep-blue);
+}
+
+.kitty-container {
+    margin-top: 45px;
+}
+
+#kitty-btn {
+    border: none;
+    background: var(--light-blue);
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+#kitty-btn:hover {
+    transform: rotate(-15deg) scale(1.15);
+}
+
+#kitty-message {
+    margin-top: 15px;
+    color: var(--blue);
+    font-weight: 600;
+}
+
+/* =========================================
+   PAGE 5 - FINAL SURPRISE
+========================================= */
+
+.final-content {
+    text-align: center;
+    max-width: 650px;
+}
+
+.final-photo {
+    width: min(80%, 330px);
+    margin: 30px auto;
+    padding: 12px;
+    background: white;
+    box-shadow: var(--shadow);
+    transform: rotate(-3deg);
+}
+
+.final-photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.final-content h2 {
+    margin-bottom: 15px;
+}
+
+.final-content > p {
+    margin: 15px 0;
+    color: #71879d;
+}
+
+.final-message {
+    margin: 25px 0;
+    color: var(--deep-blue);
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+@keyframes giftBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes entrance {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 35px 16px;
+    }
+
+    .letter-paper {
+        padding: 25px 20px;
+    }
+
+    .photo-gallery {
+        gap: 25px;
+    }
+
+    .polaroid {
+        width: min(90%, 300px);
+    }
+
+    .primary-btn {
+        padding: 14px 25px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================
+   MAGICAL ENTRANCE ANIMATION
+========================================= */
+
+.entrance-content {
+    position: relative;
+    animation: magicalEntrance 1.5s ease both;
+}
+
+.pixel-heart {
+    position: relative;
+    animation: magicalHeartbeat 1.8s infinite ease-in-out;
+    filter:
+        drop-shadow(0 0 15px #a9d3f5)
+        drop-shadow(0 0 35px #609bd0);
+}
+
+.pixel-heart::after {
+    content: "✦";
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    font-size: 2rem;
+    color: #609bd0;
+    animation: sparkle 2s infinite;
+}
+
+.entrance-content h1 {
+    animation: titleReveal 1.5s ease both;
+}
+
+.entrance-content .subtitle {
+    animation: titleReveal 1s ease both;
+}
+
+.entrance-content .primary-btn {
+    animation: buttonFloat 3s infinite ease-in-out;
+}
+
+/* FLOATING HEARTS */
+
+.floating-hearts::before,
+.floating-hearts::after {
+    content: "♡       ✦       ♡       ✧";
+    position: absolute;
+    color: #f5a9a9;
+    font-size: 2rem;
+    white-space: nowrap;
+    animation: floatingDecor 12s linear infinite;
+}
+
+.floating-hearts::before {
+    left: 5%;
+    top: 100%;
+}
+
+.floating-hearts::after {
+    right: 5%;
+    top: 100%;
+    animation-delay: 5s;
+}
+
+/* SPARKLES */
+
+.sparkles::before,
+.sparkles::after {
+    content: "✧";
+    position: absolute;
+    color: #609bd0;
+    font-size: 30px;
+    animation: sparkle 3s infinite ease-in-out;
+}
+
+.sparkles::before {
+    top: 20%;
+    left: 15%;
+}
+
+.sparkles::after {
+    bottom: 20%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+/* KEYFRAMES */
+
+@keyframes magicalEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes magicalHeartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.7) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.4) rotate(180deg);
+    }
+}
+
+@keyframes titleReveal {
+    from {
+        opacity: 0;
+        letter-spacing: 8px;
+    }
+
+    to {
+        opacity: 1;
+        letter-spacing: normal;
+    }
+}
+
+@keyframes buttonFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes floatingDecor {
+    from {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    20%, 80% {
+        opacity: 0.8;
+    }
+
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+/* =================================
+   VANESSA'S LITTLE WORLD
+================================= */
+
+.hobby-section {
+    width: 100%;
+    max-width: 850px;
+    margin: 50px auto 30px;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.hobby-section h2 {
+    color: #5b83c5;
+    margin-bottom: 10px;
+}
+
+.hobby-section > p {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.hobby-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.hobby-card {
+    background: white;
+    border: 2px solid #d9e8ff;
+    border-radius: 18px;
+    padding: 20px 10px;
+    font-size: 15px;
+    color: #527bb8;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 5px 15px rgba(91, 131, 197, 0.12);
+}
+
+.hobby-card:hover {
+    transform: translateY(-7px) scale(1.04);
+    background: #edf5ff;
+    border-color: #8eb9f5;
+    box-shadow: 0 10px 20px rgba(91, 131, 197, 0.2);
+}
+
+.hobby-card:active {
+    transform: scale(0.95);
+}
+
+#hobby-message {
+    margin-top: 25px;
+    padding: 15px;
+    background: #edf5ff;
+    border-radius: 15px;
+    color: #527bb8;
+    font-weight: bold;
+    min-height: 25px;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 600px) {
+    .hobby-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .hobby-card {
+        padding: 18px 8px;
+        font-size: 13px;
+    }
+
+    .hobby-section {
+        padding: 20px 10px;
+    }
+}
